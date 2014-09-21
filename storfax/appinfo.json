@@ -1,0 +1,17 @@
+{
+  "uuid": "d2ca22f3-c10a-41bd-944d-31d35840b37c",
+  "shortName": "storfax",
+  "longName": "storfax",
+  "companyName": "Reikaze",
+  "versionCode": 1,
+  "versionLabel": "1.0",
+  "watchapp": {
+    "watchface": false
+  },
+  "appKeys": {
+    "dummy": 0
+  },
+  "resources": {
+    "media": []
+  }
+}
