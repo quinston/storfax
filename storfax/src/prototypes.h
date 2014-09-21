@@ -3,6 +3,4 @@
 
 void draw_ship_at(int x, int y);
 
-//void draw_cosmos();
-
 #endif
