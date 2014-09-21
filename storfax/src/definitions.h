@@ -43,7 +43,8 @@ void draw_asteroid_at (int numPosition)
 void animateAsteroid(void* g) {
 	if (ASTEROID_LAYERS[0] != 0)
 	{
-		bitmap_layer_set_bitmap(ASTEROID_LAYERS[0], ASTEROIDS[ time_ms(0,0) % 2]);
+		bitmap_layer_set_bitmap(ASTEROID_LAYERS[0],
+								ASTEROIDS[  bitmap_layer_get_bitmap(ASTEROID_LAYERS[0]) == ASTEROIDS[0]  ]);
 	}
 asteroidAnimTimer = app_timer_register(ASTEROIDBLINKDELAY, (AppTimerCallback) animateAsteroid, 0);
 }
