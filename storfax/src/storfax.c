@@ -25,7 +25,7 @@ static GBitmap* ASTEROIDS[nASTEROIDTYPES];
 static BitmapLayer* ASTEROID_LAYERS[nMAXASTEROIDS];
 #define ASTEROIDBLINKDELAY 100
 
-static int asteroidSpeed = 3;
+static int asteroidSpeed = 1;
 
 
 static AppTimer* asteroidAnimTimer;
@@ -125,7 +125,10 @@ int main (void)
 }
 
 void lose() {
+	if (gameIsLost ==0) {
+	vibes_double_pulse();
 	gameIsLost = 1;
+	}
 }
 
 #include "definitions.h"
