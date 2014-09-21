@@ -12,6 +12,12 @@
     "dummy": 0
   },
   "resources": {
-    "media": []
+    "media": [
+      {
+        "type": "png",
+        "name": "IMG_TEST",
+        "file": "images/test.png"
+      }
+    ]
   }
 }

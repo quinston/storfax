@@ -1,44 +1,78 @@
 #include <pebble.h>
 
-static Window *window;
-static TextLayer *text_layer;
 
-#include<buttonHandlerDefs.h>
+static Window* window;
+static TextLayer* text_layer;
+static BitmapLayer* bitmap_layer;
 
-#include<setupHandlers.h>
+static GBitmap* ship;
 
-static void window_load(Window *window) {
-  Layer *window_layer = window_get_root_layer(window);
-  GRect bounds = layer_get_bounds(window_layer);
+/* Up and down buttons on the bottom*/
+#define SCREEN_WIDTH 168
+#define SCREEN_HEIGHT 144
 
-  text_layer = text_layer_create((GRect) { .origin = { 0, 72 }, .size = { bounds.size.w, 20 } });
-  text_layer_set_text(text_layer, "Press a button");
-  text_layer_set_text_alignment(text_layer, GTextAlignmentCenter);
-  layer_add_child(window_layer, text_layer_get_layer(text_layer));
+/*
+x: The coordinate of the MIDDLE of the plane. The plane is centred at x.
+*/
+struct Thing {
+	uint16_t x;
+	uint16_t y;
+};
+
+struct Thing plane;
+
+
+#include "buttonHandlerDefs.h"
+
+#include "setupHandlers.h"
+
+static void window_load (Window* window)
+{
+	Layer* window_layer = window_get_root_layer (window);
+	GRect bounds = layer_get_bounds (window_layer);
+
+	text_layer = text_layer_create ( (GRect) {
+		.origin = { 0, 72 }, .size = { bounds.size.w, 20 }
+	});
+	text_layer_set_text (text_layer, "Press a buttoon");
+	text_layer_set_text_alignment (text_layer, GTextAlignmentCenter);
+	layer_add_child (window_layer, text_layer_get_layer (text_layer));
 }
 
-static void window_unload(Window *window) {
-  text_layer_destroy(text_layer);
+static void window_unload (Window* window)
+{
+	text_layer_destroy (text_layer);
 }
 
-static void init(void) {
-  window = window_create();
-  window_set_click_config_provider(window, click_config_provider);
-  window_set_window_handlers(window, (WindowHandlers) {
-    .load = window_load,
-    .unload = window_unload,
-  });
-  const bool animated = true;
-  window_stack_push(window, animated);
+static void init (void)
+{
+
+#include "images.h"
+
+	window = window_create();
+	window_set_click_config_provider (window, click_config_provider);
+	window_set_window_handlers (window, (WindowHandlers) {
+		.load = window_load,
+		 .unload = window_unload,
+	});
+	const bool animated = true;
+	window_stack_push (window, animated);
 }
 
-static void deinit(void) {
-  window_destroy(window);
+static void deinit (void)
+{
+	#include "deimages.h"
+
+	window_destroy (window);
 }
 
-int main(void) {
-  init();
+int main (void)
+{
+	plane.x = 100;
+	plane.y = 80;
 
-  app_event_loop();
-  deinit();
+	init();
+
+	app_event_loop();
+	deinit();
 }
