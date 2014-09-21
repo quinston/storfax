@@ -9,7 +9,7 @@ static void text_layer_set_number(TextLayer* text_layer, uint16_t i) {
 }
 
 static void up_click_handler(ClickRecognizerRef recognizer, void *context) {
-	plane.y += 10;
+	plane.y -= 10;
 
 	text_layer_set_number(text_layer, plane.y);
 
@@ -17,7 +17,7 @@ static void up_click_handler(ClickRecognizerRef recognizer, void *context) {
 }
 
 static void down_click_handler(ClickRecognizerRef recognizer, void *context) {
-	plane.y -= 10;
+	plane.y += 10;
 
 	text_layer_set_number(text_layer, plane.y);
 
