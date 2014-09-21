@@ -15,8 +15,8 @@
     "media": [
       {
         "type": "png",
-        "name": "IMG_TEST",
-        "file": "images/test.png"
+        "name": "IMG_SHIP",
+        "file": "images/plane.png"
       },
       {
         "type": "png",
