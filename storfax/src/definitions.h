@@ -74,13 +74,15 @@ void fireLaser()
  }
 
 void animateLaser(void* data) {
+
+	if (laserHead.x > DEADLASERXCOORDINATE) {
+		app_timer_register(LASERDELAY, (AppTimerCallback) animateLaser, 0);
+	}
+
 	laserHead.x -= initialLaserDx;
 	laserHead.y -= initialLaserDy;
 	initialLaserDy /= 2;
 
-	if (laserHead.x > 0) {
-		app_timer_register(LASERDELAY, (AppTimerCallback) animateLaser, 0);
-	}
 }
 
 #endif // UTILITY_H_INCLUDED

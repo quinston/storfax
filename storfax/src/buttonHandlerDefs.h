@@ -1,7 +1,9 @@
 #pragma once
 
 static void select_click_handler(ClickRecognizerRef recognizer, void *context) {
-	fireLaser();
+	if (laserHead.x < DEADLASERXCOORDINATE) {
+		fireLaser();
+	}
 }
 
 static void text_layer_set_number(TextLayer* text_layer, uint16_t i) {

@@ -45,6 +45,7 @@ struct GPoint laserHead;
 int initialLaserDx;
 int initialLaserDy;
 #define LASERDELAY 40
+#define DEADLASERXCOORDINATE -10
 
 
 #include "buttonHandlerDefs.h"
@@ -98,6 +99,8 @@ int main (void)
 {
 	plane.x = 100;
 	plane.y = 80;
+
+	laserHead.x = laserHead.y = -90;
 
 	init();
 
