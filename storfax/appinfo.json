@@ -17,6 +17,16 @@
         "type": "png",
         "name": "IMG_TEST",
         "file": "images/test.png"
+      },
+      {
+        "type": "png",
+        "name": "IMG_ASTER1",
+        "file": "images/aster1.png"
+      },
+	  {
+        "type": "png",
+        "name": "IMG_ASTER2",
+        "file": "images/aster2.png"
       }
     ]
   }

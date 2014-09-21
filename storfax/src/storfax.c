@@ -1,6 +1,12 @@
 #include <pebble.h>
 
 
+/* Up and down buttons on the bottom,
+
+y-axis increases at the down button*/
+#define SCREEN_WIDTH 168
+#define SCREEN_HEIGHT 144
+
 static Window* window;
 static Layer* the_window_layer;
 
@@ -13,12 +19,16 @@ static BitmapLayer* SHIP_LAYER;
 static GBitmap* COSMOS;
 static BitmapLayer* COSMOS_LAYER;
 
+#define nASTEROIDTYPES 2
+static GBitmap* ASTEROIDS[nASTEROIDTYPES];
+#define nMAXASTEROIDS 8
+static BitmapLayer* ASTEROID_LAYERS[nMAXASTEROIDS];
+
+#include "asteroidPositionGraph.h"
+
 #include "prototypes.h"
 
 
-/* Up and down buttons on the bottom*/
-#define SCREEN_WIDTH 168
-#define SCREEN_HEIGHT 144
 
 /*
 x: The coordinate of the MIDDLE of the plane. The plane is centred at x.
