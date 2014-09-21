@@ -6,7 +6,7 @@ void draw_ship_at (int x, int y)
 	//bitmap_layer_destroy(SHIP_LAYER);
 	if (SHIP_LAYER == 0) {
 		SHIP_LAYER = bitmap_layer_create ( (GRect) {
-			.origin = {x, y}, .size = {SHIP_WIDTH, SHIP_HEIGHT}
+			.origin = {x, y - SHIP_HEIGHT /2}, .size = {SHIP_WIDTH, SHIP_HEIGHT}
 		});
 		bitmap_layer_set_bitmap (SHIP_LAYER, SHIP);
 		bitmap_layer_set_compositing_mode (SHIP_LAYER, GCompOpAssignInverted);
@@ -14,7 +14,7 @@ void draw_ship_at (int x, int y)
 	} else {
 		layer_set_frame (bitmap_layer_get_layer (SHIP_LAYER),
 		(GRect) {
-			.origin = {x, y}, .size = {SHIP_WIDTH, SHIP_HEIGHT}
+			.origin = {x, y- SHIP_HEIGHT /2}, .size = {SHIP_WIDTH, SHIP_HEIGHT}
 		});
 	}
 }
