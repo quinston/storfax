@@ -21,6 +21,7 @@ static BitmapLayer* COSMOS_LAYER;
 static GBitmap* ASTEROIDS[nASTEROIDTYPES];
 #define nMAXASTEROIDS 8
 static BitmapLayer* ASTEROID_LAYERS[nMAXASTEROIDS];
+#define ASTEROIDBLINKDELAY 50
 
 static AppTimer* asteroidAnimTimer;
 
@@ -75,7 +76,7 @@ static void init (void)
 	window_stack_push (window, animated);
 
 
-	asteroidAnimTimer = app_timer_register(16, (AppTimerCallback) animateAsteroid, 0);
+	asteroidAnimTimer = app_timer_register(ASTEROIDBLINKDELAY, (AppTimerCallback) animateAsteroid, 0);
 }
 
 static void deinit (void)

@@ -45,7 +45,7 @@ void animateAsteroid(void* g) {
 	{
 		bitmap_layer_set_bitmap(ASTEROID_LAYERS[0], ASTEROIDS[ time_ms(0,0) % 2]);
 	}
-	app_timer_reschedule(asteroidAnimTimer, 16);
+asteroidAnimTimer = app_timer_register(ASTEROIDBLINKDELAY, (AppTimerCallback) animateAsteroid, 0);
 }
 
 #endif // UTILITY_H_INCLUDED

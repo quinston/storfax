@@ -1,8 +1,8 @@
 #ifndef IMAGES_H_INCLUDED
 #define IMAGES_H_INCLUDED
 
-#define SHIP_WIDTH 10
-#define SHIP_HEIGHT 14
+#define SHIP_WIDTH 30
+#define SHIP_HEIGHT 40
 SHIP = gbitmap_create_with_resource(RESOURCE_ID_IMG_SHIP);
 
 #define ASTEROID_WIDTH 20
