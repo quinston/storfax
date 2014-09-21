@@ -12,10 +12,14 @@ static void up_click_handler(ClickRecognizerRef recognizer, void *context) {
 	plane.y += 10;
 
 	text_layer_set_number(text_layer, plane.y);
+
+	draw_ship_at(plane.x, plane.y);
 }
 
 static void down_click_handler(ClickRecognizerRef recognizer, void *context) {
 	plane.y -= 10;
 
 	text_layer_set_number(text_layer, plane.y);
+
+	draw_ship_at(plane.x, plane.y);
 }

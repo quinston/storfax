@@ -2,10 +2,19 @@
 
 
 static Window* window;
-static TextLayer* text_layer;
-static BitmapLayer* bitmap_layer;
+static Layer* the_window_layer;
 
-static GBitmap* ship;
+static TextLayer* text_layer;
+
+
+static GBitmap* SHIP;
+static BitmapLayer* SHIP_LAYER;
+
+static GBitmap* COSMOS;
+static BitmapLayer* COSMOS_LAYER;
+
+#include "prototypes.h"
+
 
 /* Up and down buttons on the bottom*/
 #define SCREEN_WIDTH 168
@@ -26,17 +35,19 @@ struct Thing plane;
 
 #include "setupHandlers.h"
 
+
 static void window_load (Window* window)
 {
-	Layer* window_layer = window_get_root_layer (window);
-	GRect bounds = layer_get_bounds (window_layer);
+	the_window_layer = window_get_root_layer (window);
+
+	GRect bounds = layer_get_bounds (the_window_layer);
 
 	text_layer = text_layer_create ( (GRect) {
 		.origin = { 0, 72 }, .size = { bounds.size.w, 20 }
 	});
 	text_layer_set_text (text_layer, "Press a buttoon");
 	text_layer_set_text_alignment (text_layer, GTextAlignmentCenter);
-	layer_add_child (window_layer, text_layer_get_layer (text_layer));
+	layer_add_child (the_window_layer, text_layer_get_layer (text_layer));
 }
 
 static void window_unload (Window* window)
@@ -47,9 +58,11 @@ static void window_unload (Window* window)
 static void init (void)
 {
 
-#include "images.h"
+	#include "images.h"
 
 	window = window_create();
+	window_set_background_color(window, GColorBlack);
+
 	window_set_click_config_provider (window, click_config_provider);
 	window_set_window_handlers (window, (WindowHandlers) {
 		.load = window_load,
@@ -76,3 +89,5 @@ int main (void)
 	app_event_loop();
 	deinit();
 }
+
+#include "definitions.h"
