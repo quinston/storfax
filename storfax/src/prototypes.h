@@ -3,10 +3,11 @@
 
 void draw_ship_at(int x, int y);
 
-// there are 8 predefined positions for asteroids
-void draw_asteroid_at(int numPosition);
+void draw_asteroids();
 
 void animateAsteroid(void*);
+
+void moveAsteroid();
 
 void paint(struct Layer*, GContext*);
 
@@ -14,5 +15,11 @@ void draw_laser(GContext*);
 
 void fireLaser();
 void animateLaser(void*);
+
+void checkCollisions();
+
+void cycle(void*);
+
+int getAsteroidRespawnXCoord();
 
 #endif

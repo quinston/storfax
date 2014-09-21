@@ -2,4 +2,4 @@
 
 lol: src
 	pebble build
-	pebble install --phone pbl
+	pebble install --phone pbl 

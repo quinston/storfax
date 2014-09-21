@@ -10,12 +10,14 @@ y-axis increases at the down button*/
 static Window* window;
 static Layer* the_window_layer;
 
+static GBitmap* gameOver;
+static BitmapLayer* gameOverLayer;
+int gameIsLost;
+
 
 static GBitmap* SHIP;
 static BitmapLayer* SHIP_LAYER;
 
-static GBitmap* COSMOS;
-static BitmapLayer* COSMOS_LAYER;
 
 #define nASTEROIDTYPES 2
 static GBitmap* ASTEROIDS[nASTEROIDTYPES];
@@ -23,7 +25,13 @@ static GBitmap* ASTEROIDS[nASTEROIDTYPES];
 static BitmapLayer* ASTEROID_LAYERS[nMAXASTEROIDS];
 #define ASTEROIDBLINKDELAY 100
 
+static int asteroidSpeed = 1;
+
+
 static AppTimer* asteroidAnimTimer;
+
+static AppTimer* cycleTimer;
+static float cyclesPerSecond = 10;
 
 #include "asteroidPositionGraph.h"
 
@@ -42,8 +50,8 @@ struct Thing {
 struct Thing plane;
 
 struct GPoint laserHead;
-int initialLaserDx;
-int initialLaserDy;
+float initialLaserDx;
+float initialLaserDy;
 #define LASERDELAY 40
 #define DEADLASERXCOORDINATE -10
 
@@ -61,6 +69,16 @@ static void window_load (Window* window)
 
 	GRect bounds = layer_get_bounds (the_window_layer);
 
+	for (int i = 0; i != nMAXASTEROIDS; ++i){
+		layer_add_child(the_window_layer, bitmap_layer_get_layer( ASTEROID_LAYERS[i]));
+	}
+
+	asteroidAnimTimer = app_timer_register(ASTEROIDBLINKDELAY, (AppTimerCallback) animateAsteroid, 0);
+
+	cycleTimer = app_timer_register(1 / cyclesPerSecond, (AppTimerCallback) cycle, 0);
+
+
+
 }
 
 static void window_unload (Window* window)
@@ -69,7 +87,7 @@ static void window_unload (Window* window)
 
 static void init (void)
 {
-
+	gameIsLost = false;
 	#include "images.h"
 
 	window = window_create();
@@ -84,8 +102,6 @@ static void init (void)
 	const bool animated = true;
 	window_stack_push (window, animated);
 
-
-	asteroidAnimTimer = app_timer_register(ASTEROIDBLINKDELAY, (AppTimerCallback) animateAsteroid, 0);
 }
 
 static void deinit (void)
@@ -106,6 +122,10 @@ int main (void)
 
 	app_event_loop();
 	deinit();
+}
+
+void lose() {
+	gameIsLost = 1;
 }
 
 #include "definitions.h"

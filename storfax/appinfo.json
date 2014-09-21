@@ -27,6 +27,11 @@
         "type": "png",
         "name": "IMG_ASTER2",
         "file": "images/aster2.png"
+      },
+      {
+		"type": "png",
+		"name": "IMG_GAMEOVER",
+		"file": "images/gameover.png"
       }
     ]
   }
