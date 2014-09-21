@@ -10,6 +10,9 @@ void animateAsteroid(void*);
 
 void paint(struct Layer*, GContext*);
 
+void draw_laser(GContext*);
+
 void fireLaser();
+void animateLaser(void*);
 
 #endif

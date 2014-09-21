@@ -42,6 +42,9 @@ struct Thing {
 struct Thing plane;
 
 struct GPoint laserHead;
+int initialLaserDx;
+int initialLaserDy;
+#define LASERDELAY 40
 
 
 #include "buttonHandlerDefs.h"

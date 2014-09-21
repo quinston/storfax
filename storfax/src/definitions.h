@@ -54,11 +54,33 @@ void paint(struct Layer* layer, GContext* ctx)
 	graphics_context_set_fill_color(ctx, GColorBlack);
 	graphics_fill_rect(ctx, (GRect) {.origin = {0,0}, .size = {SCREEN_WIDTH, SCREEN_HEIGHT}},0,0);
 
+	draw_laser(ctx);
+
+}
+
+void draw_laser(GContext* ctx) {
+	graphics_context_set_fill_color(ctx, GColorWhite);
+	graphics_fill_circle(ctx, laserHead, 3);
 }
 
 void fireLaser()
  {
+	laserHead.x = plane.x;
+	laserHead.y = plane.y;
+	initialLaserDy = 1 + (SCREEN_HEIGHT/2 - plane.x)/SCREEN_WIDTH;
+	initialLaserDx = 2;
 
+	app_timer_register(LASERDELAY, (AppTimerCallback) animateLaser, 0);
  }
+
+void animateLaser(void* data) {
+	laserHead.x -= initialLaserDx;
+	laserHead.y -= initialLaserDy;
+	initialLaserDy /= 2;
+
+	if (laserHead.x > 0) {
+		app_timer_register(LASERDELAY, (AppTimerCallback) animateLaser, 0);
+	}
+}
 
 #endif // UTILITY_H_INCLUDED
