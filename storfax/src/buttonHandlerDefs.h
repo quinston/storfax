@@ -1,7 +1,7 @@
 #pragma once
 
 static void select_click_handler(ClickRecognizerRef recognizer, void *context) {
-
+	fireLaser();
 }
 
 static void text_layer_set_number(TextLayer* text_layer, uint16_t i) {

@@ -4,8 +4,8 @@
 /* Up and down buttons on the bottom,
 
 y-axis increases at the down button*/
-#define SCREEN_WIDTH 168
-#define SCREEN_HEIGHT 144
+#define SCREEN_WIDTH 144
+#define SCREEN_HEIGHT 168
 
 static Window* window;
 static Layer* the_window_layer;
@@ -41,6 +41,8 @@ struct Thing {
 
 struct Thing plane;
 
+struct GPoint laserHead;
+
 
 #include "buttonHandlerDefs.h"
 
@@ -50,6 +52,8 @@ struct Thing plane;
 static void window_load (Window* window)
 {
 	the_window_layer = window_get_root_layer (window);
+
+	layer_set_update_proc(the_window_layer, paint);
 
 	GRect bounds = layer_get_bounds (the_window_layer);
 
@@ -66,6 +70,7 @@ static void init (void)
 
 	window = window_create();
 	window_set_background_color(window, GColorBlack);
+	window_set_fullscreen(window, 1);
 
 	window_set_click_config_provider (window, click_config_provider);
 	window_set_window_handlers (window, (WindowHandlers) {

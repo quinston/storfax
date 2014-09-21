@@ -8,4 +8,8 @@ void draw_asteroid_at(int numPosition);
 
 void animateAsteroid(void*);
 
+void paint(struct Layer*, GContext*);
+
+void fireLaser();
+
 #endif

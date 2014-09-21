@@ -49,4 +49,16 @@ void animateAsteroid(void* g) {
 asteroidAnimTimer = app_timer_register(ASTEROIDBLINKDELAY, (AppTimerCallback) animateAsteroid, 0);
 }
 
+void paint(struct Layer* layer, GContext* ctx)
+{
+	graphics_context_set_fill_color(ctx, GColorBlack);
+	graphics_fill_rect(ctx, (GRect) {.origin = {0,0}, .size = {SCREEN_WIDTH, SCREEN_HEIGHT}},0,0);
+
+}
+
+void fireLaser()
+ {
+
+ }
+
 #endif // UTILITY_H_INCLUDED
