@@ -10,8 +10,6 @@ y-axis increases at the down button*/
 static Window* window;
 static Layer* the_window_layer;
 
-static TextLayer* text_layer;
-
 
 static GBitmap* SHIP;
 static BitmapLayer* SHIP_LAYER;
@@ -52,17 +50,10 @@ static void window_load (Window* window)
 
 	GRect bounds = layer_get_bounds (the_window_layer);
 
-	text_layer = text_layer_create ( (GRect) {
-		.origin = { 0, 72 }, .size = { bounds.size.w, 20 }
-	});
-	text_layer_set_text (text_layer, "Press a buttoon");
-	text_layer_set_text_alignment (text_layer, GTextAlignmentCenter);
-	layer_add_child (the_window_layer, text_layer_get_layer (text_layer));
 }
 
 static void window_unload (Window* window)
 {
-	text_layer_destroy (text_layer);
 }
 
 static void init (void)

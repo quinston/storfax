@@ -34,7 +34,7 @@ void draw_asteroid_at (int numPosition)
 		layer_set_frame (bitmap_layer_get_layer (ASTEROID_LAYERS[0]),
 		(GRect) {
 			.origin = {
-				asteroidPositions[numPosition], asteroidPositions[numPosition + 1]
+				asteroidPositions[numPosition*2], asteroidPositions[numPosition*2 + 1]
 			}, .size = {ASTEROID_WIDTH, ASTEROID_HEIGHT}
 		});
 	}
