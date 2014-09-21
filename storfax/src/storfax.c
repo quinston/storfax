@@ -25,7 +25,7 @@ static GBitmap* ASTEROIDS[nASTEROIDTYPES];
 static BitmapLayer* ASTEROID_LAYERS[nMAXASTEROIDS];
 #define ASTEROIDBLINKDELAY 100
 
-static int asteroidSpeed = 1;
+static int asteroidSpeed = 3;
 
 
 static AppTimer* asteroidAnimTimer;

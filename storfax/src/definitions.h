@@ -24,6 +24,9 @@ void draw_ship_at (int x, int y)
 void draw_asteroids()
 {
 	for (int i=0; i != nMAXASTEROIDS; ++i) {
+
+			app_log(APP_LOG_LEVEL_DEBUG, "definitions.h", 28, "Asteriod %d at x=%d", i, currentAsteroidPositions[i*2]);
+
 	if (ASTEROID_LAYERS[i] == 0) {
 		ASTEROID_LAYERS[i] = bitmap_layer_create ( (GRect) {
 			.origin = {
@@ -129,27 +132,31 @@ void cycle(void* data){
 
 
 	cycleTimer = app_timer_register(1 / cyclesPerSecond, (AppTimerCallback) cycle, 0);
+
+
 }
 
 void moveAsteroid() {
-	FOREACH_ASTEROID_i {
+	 for(int i=0;i != nMAXASTEROIDS; ++i) {
 		if (ASTEROID_LAYERS[i] != 0) {
+
+
 			// push asteroid back to top
-			if (currentAsteroidPositions[2*i] > SCREEN_WIDTH + 30) {
+			if (currentAsteroidPositions[2*i] > SCREEN_WIDTH) {
 				currentAsteroidPositions[2*i] = getAsteroidRespawnXCoord();
 				currentAsteroidPositions[2*i+1] =rand() * SCREEN_HEIGHT;
-
 			}
 			else {
 				currentAsteroidPositions[2*i] += asteroidSpeed ;
 
 			}
+
 		}
 	}
 }
 
 int getAsteroidRespawnXCoord() {
-	return -30;
+	return -10;
 }
 
 #endif // UTILITY_H_INCLUDED
